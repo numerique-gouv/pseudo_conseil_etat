@@ -46,3 +46,7 @@ if __name__ == '__main__':
         print(line)
 
     # 3 Load and Predict
+
+
+if __name__ == '__main__':
+    print("test")
