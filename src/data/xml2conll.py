@@ -445,17 +445,18 @@ def find_reason_alignment_fail(per_line_tagged_entity: dict, text_lines: list):
     return reason
 
 
-def run(annotation_xml_path):
-    logger.info(f"Treating file {annotation_xml_path}")
-    tqdm.write(f"Treating file {annotation_xml_path}")
-    decision_folder = os.path.dirname(annotation_xml_path)
-    decision_txt_path = annotation_xml_path[:-4] + ".txt"
-    if not os.path.exists(decision_txt_path):
-        logger.debug(f"{decision_txt_path} was not found!!")
-        return 0, annotation_xml_path
-    if not os.path.exists(annotation_xml_path):
-        logger.debug(f"{annotation_xml_path} was not found!!")
-        return 0, annotation_xml_path
+def run(annotation_xml_path, decision_txt_path):
+    # logger.info(f"Treating file {annotation_xml_path}")
+    # tqdm.write(f"Treating file {annotation_xml_path}")
+    # decision_folder = os.path.dirname(annotation_xml_path)
+    # decision_txt_path = annotation_xml_path[:-4] + ".txt"
+    # if not os.path.exists(decision_txt_path):
+    #     logger.debug(f"{decision_txt_path} was not found!!")
+    #     return 0, annotation_xml_path
+    # if not os.path.exists(annotation_xml_path):
+    #     logger.debug(f"{annotation_xml_path} was not found!!")
+    #     return 0, annotation_xml_path
+
 
     try:
         # Load annotation from xml, create line replacements dict
@@ -468,6 +469,7 @@ def run(annotation_xml_path):
         # open decision .txt file
         text_lines = load_decision(decision_txt_path)
         if not text_lines:
+            logger.error(f"There were no lines found in {decision_txt_path}")
             logger.error(f"There were no lines found in {decision_txt_path}")
             return 0, annotation_xml_path
 
@@ -496,6 +498,7 @@ def run(annotation_xml_path):
         return 0, annotation_xml_path
     # all_tags, all_tokens = postprocess_sequence(all_tags, all_tokens)
 
+    decision_folder = "/Users/thomasclavier/Documents/Projects/Etalab/prod/pseudo_conseil_etat/src/clean_data/"
     # save tokens and tags in a file
     with open(os.path.join(decision_folder, os.path.basename(annotation_xml_path)[:-4] + "_CoNLL.txt"),
               "w") as conll:
@@ -505,6 +508,7 @@ def run(annotation_xml_path):
                 # logger.debug(f"{tok}\t{str(tag)}")
             conll.write("\n")
             # logger.debug("\n")
+        print("done file #################@@")
     return 1, annotation_xml_path
 
 
@@ -529,6 +533,6 @@ if __name__ == '__main__':
     with open("./logs/correct_xmls.txt", "w") as filo:
         filo.writelines(processed_fine)
 
-    logger.info(
-        f"{len(processed_fine)} XML/DOC files were treated and saved as CoNLL. "
-        f"{len(job_output) - len(processed_fine)} files had some error.")
+    # logger.info(
+    #     f"{len(processed_fine)} XML/DOC files were treated and saved as CoNLL. "
+    #     f"{len(job_output) - len(processed_fine)} files had some error.")

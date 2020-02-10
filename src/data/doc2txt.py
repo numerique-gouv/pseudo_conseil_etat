@@ -25,7 +25,9 @@ def doc2txt(doc_path):
     if os.path.exists(txt_path):
         tqdm.write(f"File {doc_path} already converted.")
         return 0
-    subprocess.check_call(["soffice", "--headless", "--convert-to", "txt:Text", doc_path, "--outdir", doc_folder])
+    subprocess.check_call(["textutil", "-convert", "txt", doc_path])
+    #subprocess.check_call(["soffice", "--headless", "--convert-to", "txt:Text", doc_path, "--outdir", doc_folder])
+
     return 1
 
 
