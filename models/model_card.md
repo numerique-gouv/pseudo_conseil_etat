@@ -38,11 +38,11 @@ Source: model card paper :  https://arxiv.org/abs/1810.03993
 
 * Model performance measures
 
-![](59a4d1fccd4ac7bc05dd18976d61a831.png)
+![metrics](./images/metrics.png) 
 
 On the evaluation set : F-score de 92.98%
 
-![](b4c71908f4da22987ac65567b2f65276.png)
+![results](./images/results.png) 
 
 
 * Decision thresholds
