@@ -11,7 +11,8 @@ Source: model card paper :  https://arxiv.org/abs/1810.03993
 
 * Information about training algorithms, parameters, fairness
 
-![](9d09f94c17f240efe7b989f4713b04ee.png)
+![training](./images/training.png) 
+
 
 * constraints or other applied approaches, and features
 * Paper or other resource for more information : [this presentation](https://speakerdeck.com/etalabia/psuedo-ce-20201128) and [this more general presentation]( https://speakerdeck.com/etalabia/psuedo-ce-20201128-general)
